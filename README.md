@@ -6,4 +6,47 @@
   * n参数：指获取图片的数量，n=1，指获取一张图片。
   * （也可以通过别的接口，比如：[Bing 壁纸 API](https://github.com/xCss/bing)
 + 如何将json数据转化为对象见：[c# getpost](https://github.com/xiaoxianrou8/GetPost)
-+ 获取图片
++ 访问此url后返回的json数据如下：
+```json
+{
+  "images":
+  [
+    {"startdate":"20190107",
+      "fullstartdate":"201901071600",
+      "enddate":"20190108",
+      "url":"/az/hprichbg/rb/RainierDawn_ZH-CN9182470816_1920x1080.jpg",
+      "urlbase":"/az/hprichbg/rb/RainierDawn_ZH-CN9182470816",
+      "copyright":"瑞尼尔山国家公园，美国华盛顿州 (© Stephen Matera/Tandem Stills + Motion)",
+      "copyrightlink":"http://www.bing.com/search?q=%E5%9B%BD%E5%AE%B6%E5%85%AC%E5%9B%AD&form=hpcapt&mkt=zh-cn",
+      "title":"",
+      "quiz":"/search?q=Bing+homepage+quiz&filters=WQOskey:%22HPQuiz_20190107_RainierDawn%22&FORM=HPQUIZ",
+      "wp":false,
+      "hsh":"c295f026b64b45e57248218481629f4e",
+      "drk":1,
+      "top":1,
+      "bot":1,
+      "hs":[]
+      }],
+      "tooltips":
+      {
+        "loading":"正在加载...",
+        "previous":"上一个图像",
+        "next":"下一个图像",
+        "walle":"此图片不能下载用作壁纸。",
+        "walls":"下载今日美图。仅限用作桌面壁纸。"
+        }
+      }
+ ``` 
++ 图片的地址即为：必应地址+image[0].url(本例为：http://cn.bing.com/az/hprichbg/rb/RainierDawn_ZH-CN9182470816_1920x1080.jpg)
++ 获取图片,并保存至本地。
+  * 这里使用HttpClient类的GetByteArrayAsync方法。将图片存储为字节数组文件。
+  ```csharp
+  byte[] photo=null;
+  //获取图片字节串
+  using(var httpClient=new HttpClient())
+  {
+      byte[] bt=await httpClient.GetByteArrayAsync(ImageUrl);
+      photo=bt;
+  }
+   ```
+   
