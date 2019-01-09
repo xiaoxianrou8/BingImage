@@ -38,7 +38,7 @@
       }
  ``` 
 + 图片的地址即为：必应地址+image[0].url(本例为：http://cn.bing.com/az/hprichbg/rb/RainierDawn_ZH-CN9182470816_1920x1080.jpg)
-+ 获取图片,并保存至本地。
++ 获取图片,并保存至本地。 
   * 这里使用HttpClient类的GetByteArrayAsync方法。将图片存储为字节数组文件。
   ```csharp
   byte[] photo=null;
@@ -49,4 +49,52 @@
       photo=bt;
   }
    ```
-   
+  * 将字节数组存储为文件。也可参照帖子[C# Stream 和 byte[] 之间的转换(文件流的应用)
+](https://www.cnblogs.com/sunxuchu/p/5635473.html)
+  ```csharp
+  public void SaveImg(byte[] photobt)
+  {
+      //查看图片是否已经下载，path为路径
+      if(File.Exists(path))
+      {
+          return;
+      }
+      //创造图片
+      using(FileStream fileStream=new FileStream(path,FileMode.Create))
+      {
+          BinaryWriter binaryWriter=new BinaryWriter(fileStream);
+          //写入图片信息
+          binaryWriter.Write(photobt);
+      }
+  }
+   ```
+   这就是下载图片的步骤。
+---
++ 获取故事：https://cn.bing.com/cnhp/coverstory
++ 返回的json数据：
+   ```json
+   {
+  "date":"January 08",
+  "title":"一个国家的灵魂之地",
+  "attribute":"美国，瑞尼尔山国家公园",
+  "para1":"大多数人选择在温暖舒适的天气里来这儿，但冬天的凌冽和雪景会给这里带来另一种惊人的美。
+  在华盛顿州的瑞尼尔山国家公园(Mount Rainier National Park)，冬天是享受休闲冰雪活动的好时机。
+  冬季的额外好处是，这时的国家公园没有夏季那样拥挤的人群。在大提顿山脉的雪地上，你很容易就能看
+  到成群的麋鹿和其他野生动物。或者漫步在布赖斯峡谷白雪皑皑的峰顶(高耸的红色岩石尖顶)，此刻的你
+  可能会觉得冬天才是参观这个国家公园的最佳时间。今天的壁纸便是我们拍到的公园中透过云层的日出。",
+  "para2":"",
+  "provider":"© Stephen Matera/Tandem Stills + Motion",
+  "imageUrl":"http://hpimges.blob.core.chinacloudapi.cn/coverstory/watermark_rainierdawn_zh-cn9182470816_1920x1080.jpg",
+  "primaryImageUrl":"http://hpimges.blob.core.chinacloudapi.cn/coverstory/watermark_rainierdawn_zh-cn9182470816_1920x1080.jpg",
+  "Country":"美国",
+  "City":"瑞尼尔山国家公园",
+  "Longitude":"-121.759415",
+  "Latitude":"46.853148",
+  "Continent":"北美洲",
+  "CityInEnglish":"Mount Rainier National Park",
+  "CountryCode":"US"
+}
+ ```
+ + 反序列化处理即可，json数据处理见：[如何用API获取天气信息](https://github.com/xiaoxianrou8/GetPost)
+ ---
+ 详细请看代码。:smile::smile:
