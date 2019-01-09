@@ -35,7 +35,7 @@
         "walle":"此图片不能下载用作壁纸。",
         "walls":"下载今日美图。仅限用作桌面壁纸。"
         }
-      }
+  }
  ``` 
 + 图片的地址即为：必应地址+image[0].url(本例为：http://cn.bing.com/az/hprichbg/rb/RainierDawn_ZH-CN9182470816_1920x1080.jpg)
 + 获取图片,并保存至本地。 
@@ -67,8 +67,8 @@
           binaryWriter.Write(photobt);
       }
   }
-   ```
-   这就是下载图片的步骤。
+  ```
+  * 这就是下载图片的步骤。
 ---
 + 获取故事：https://cn.bing.com/cnhp/coverstory
 + 返回的json数据：
@@ -93,8 +93,8 @@
   "Continent":"北美洲",
   "CityInEnglish":"Mount Rainier National Park",
   "CountryCode":"US"
-}
- ```
- + 反序列化处理即可，json数据处理见：[如何用API获取天气信息](https://github.com/xiaoxianrou8/GetPost)
- ---
- 详细请看代码。:blush:
+  }
+  ``` 
+ * 反序列化处理即可，json数据处理见：[如何用API获取天气信息](https://github.com/xiaoxianrou8/GetPost) 
+ --- 
+ + 详细请看代码。 :blush:
